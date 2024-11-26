@@ -1,0 +1,16 @@
+.button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-filled {
+  color: #fff;
+  border: none;
+}
+
+.button-outlined {
+  background-color: transparent;
+  color: #333;
+  border: 0px solid #333;
+}
