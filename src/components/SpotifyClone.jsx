@@ -6,6 +6,7 @@ import MainView from "./layout/MainView";
 import NowPlaying from "./layout/NowPlaying";
 import LibrarySection from "./layout/LibrarySection";
 import SongInfoCard from "./layout/SongInfoCard";
+import { Ellipsis } from 'lucide-react';
 
 const SpotifyClone = () => {
   // Global state for the player
@@ -28,7 +29,10 @@ const SpotifyClone = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-black text-white">
+    <div className="h-screen w-screen flex flex-col bg-black text-white px-2">
+      <div className="h-8 bg-black rounded-xl m-2 flex items-center">
+        <Ellipsis size={28} />
+      </div>
       <div className="flex flex-1 overflow-hidden gap-2">
         <div className="w-[350px] flex flex-col gap-2">
           <div className="bg-zinc-900 rounded-xl">

@@ -15,8 +15,8 @@ const LibrarySection = () => {
   return (
     <div className="h-full flex flex-col overflow-hidden">
       {/* Library section header */}
-      <div className="px-4 flex items-center justify-between py-4">
-        <div className="flex items-center space-x-4 text-gray-300 hover:text-white cursor-pointer">
+      <div className="px-5 flex items-center justify-between py-4">
+        <div className="flex items-center space-x-4 text-zinc-400 hover:text-white cursor-pointer">
           <Library size={24} />
           <span className="font-bold">Your Library</span>
         </div>

@@ -4,7 +4,7 @@ import { Volume2 } from 'lucide-react';
 const ArtistItem = ({ name, type, image_url, active }) => {
   return (
     <div 
-      className={`space-x-2 rounded-xl flex items-center px-2 py-2 cursor-pointer ${active ? 'bg-zinc-800 text-white' : 'text-zinc-300 hover:bg-zinc-800'}`}
+      className={`space-x-2 rounded-lg flex items-center px-2 py-2 cursor-pointer ${active ? 'bg-zinc-800 text-white' : 'text-zinc-300 hover:bg-zinc-800'}`}
     >
       <img 
         src={image_url}

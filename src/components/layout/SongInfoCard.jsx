@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Heart, MoreHorizontal, Plus, Music3 } from "lucide-react";
+import { Heart, MoreHorizontal, Plus, Music3, Play } from "lucide-react";
 import TourCard from "../shared/TourCard";
 import tourEvents from "../../data/tourEventData";
 
 const SongInfoCard = ({ track }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   // Handle scroll events
   const handleScroll = (e) => {
@@ -14,7 +15,7 @@ const SongInfoCard = ({ track }) => {
 
   return (
     <div
-      className={`w-full bg-zinc-900 p-4 rounded-xl overflow-y-auto flex-1 flex-col h-full ${
+      className={`w-full bg-zinc-900 p-4 rounded-lg overflow-y-auto flex-1 flex-col h-full ${
         scrolled ? "bg-zinc-900" : "bg-gradient-to-b from-zinc-900 to-zinc-900 "
       }`}
     >
@@ -57,7 +58,7 @@ const SongInfoCard = ({ track }) => {
       </div>
 
       {/* About the Artist */}
-      <div className="mb-4 bg-zinc-800 rounded-xl font-inter">
+      <div className="mb-4 bg-zinc-800 rounded-lg font-inter">
         {/* <div class="relative my-2">
           <img
             src="https://picsum.photos/id/1/400/200"
@@ -65,12 +66,12 @@ const SongInfoCard = ({ track }) => {
             class="w-full h-48 rounded-t-xl object-cover"
           />
           <div class="absolute top-0 left-0 w-full p-4">
-            <h5 class="text-white text-sm font-bold">About the Artist</h5>
+            <h5 class="text-white text-md font-bold">About the Artist</h5>
           </div>
         </div> */}
         <div className="flex flex-col items-start space-x-4">
           <div className="w-full p-4">
-            <h5 className="text-white text-sm font-bold">About the Artist</h5>
+            <h5 className="text-white text-md font-bold">About the Artist</h5>
           </div>
           <img
             src="https://picsum.photos/id/1/200"
@@ -83,7 +84,7 @@ const SongInfoCard = ({ track }) => {
             <div>
               <h6 className="text-white font-bold my-2">A.R. Rahman</h6>
               <div className="items-center flex justify-between my-2">
-                <span className="text-gray-400 items-center">
+                <span className="text-gray-400 text-md items-center">
                   38,113,251 monthly listeners
                 </span>
                 <div className="hover:scale-105">
@@ -102,71 +103,86 @@ const SongInfoCard = ({ track }) => {
         </div>
       </div>
 
-      {/* Tour Section */}
-      <div className="bg-zinc-800 rounded-xl p-4 font-inter my-4">
+      {/* Credits Section */}
+      <div className="mb-4 bg-zinc-800 rounded-lg font-inter p-4">
         <div className="flex items-center justify-between mb-4">
-          <h5 className="text-white text-sm font-bold">On Tour</h5>
+          <h5 className="text-white text-md font-bold">Credits</h5>
+          <button className="text-sm font-medium text-gray-400 hover:text-white hover:underline hover:scale-105">
+            Show all
+          </button>
+        </div>
+        <div className="space-y-3 space-y-4">
+          {track?.credits?.map((credit, index) => (
+            <div key={index} className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-white text-md font-bold">
+                {credit.name}
+              </span>
+              <span className="text-gray-400 font-bold text-sm">
+                {credit.role}
+              </span>
+            </div>
+            <div className="hover:scale-105">
+            <button className="text-sm bg-zinc-800 border-solid border-2 border-gray-700 hover:border-white text-white font-bold py-1 px-3 rounded-full ml-4">
+              Follow
+            </button>
+          </div>
+          </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tour Section */}
+      <div className="bg-zinc-800 rounded-lg font-inter mb-4 pb-1">
+        <div className="flex items-center justify-between p-4">
+          <h5 className="text-white text-md font-bold">On Tour</h5>
           <button className="text-sm font-medium text-gray-400 hover:text-white hover:underline hover:scale-105">
             Show all
           </button>
         </div>
         <div>
-        {tourEvents.map((event, index) => (
-          <TourCard
-            key={index}
-            date={event.date}
-            city={event.city}
-            artist={event.artist}
-            details={event.details}
-          />
-        ))}
-        </div>
-      </div>
-
-      {/* Credits Section */}
-      <div className="mb-6 bg-zinc-800 rounded-xl font-inter p-4">
-        <div className="flex items-center justify-between mb-4">
-          <h5 className="text-white text-sm font-bold">Credits</h5>
-          <button className="text-sm font-medium text-gray-400 hover:text-white hover:underline hover:scale-105">
-            Show all
-          </button>
-        </div>
-
-        <div className="space-y-3">
-          {track?.credits?.map((credit, index) => (
-            <div key={index} className="flex flex-col">
-              <span className="text-white text-sm font-bold">
-                {credit.name}
-              </span>
-              <span className="text-gray-400 font-bold text-xs">
-                {credit.role}
-              </span>
-            </div>
+          {tourEvents.map((event, index) => (
+            <TourCard
+              key={index}
+              month={event.month}
+              date={event.date}
+              city={event.city}
+              artist={event.artist}
+              details={event.details}
+              location={event.location}
+            />
           ))}
         </div>
       </div>
 
       {/* Next in queue */}
-      <div className="bg-zinc-800 rounded-xl font-inter p-4">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-white text-sm font-bold">Next in queue</span>
+      <div className="bg-zinc-800 rounded-lg font-inter p-2">
+        <div className="flex items-center justify-between mb-2 p-2">
+          <span className="text-white text-md font-bold">Next in queue</span>
           <button className="text-sm text-gray-400 font-medium hover:text-white hover:underline hover:scale-105">
             Open queue
           </button>
         </div>
-
-        <div className="rounded-xl flex items-center py-3 space-x-3 hover:bg-zinc-700">
-          <button className="flex space-x-0 text-zinc-400 cursor-default">
-            <Music3 size={16} />
+        <div 
+          className="rounded-lg flex items-center py-2 space-x-2 hover:bg-zinc-700" 
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}>
+          <button 
+          className="mx-2 flex space text-zinc-400 cursor-default">
+            {isHovering ? (
+          <Play size={16} className="text-white" fill="white" />
+        ) : (
+          <Music3 size={16} className="text-zinc-400" />
+        )}
           </button>
           <img
             src={"https://picsum.photos/id/7/200"}
             alt={"Eastside"}
-            className="flex space-x-0 w-12 h-12 bg-zinc-800 rounded object-cover"
+            className="flex w-12 h-12 bg-zinc-800 rounded object-cover"
           />
           <div>
             <p className="font-medium cursor-default">Senorita</p>
-            <p className="cursor-default text-sm font-medium text-zinc-400 text-ellipsis overflow-hidden whitespace-nowrap max-w-[200px]">
+            <p className="cursor-default text-sm font-medium text-zinc-400 line-clamp-1">
               Farhan Akhtar, Hrithik Roshan, Abhay Deol
             </p>
           </div>
