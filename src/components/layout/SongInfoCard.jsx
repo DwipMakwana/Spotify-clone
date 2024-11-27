@@ -3,7 +3,7 @@ import { Heart, MoreHorizontal, Plus, Music3, Play } from "lucide-react";
 import TourCard from "../shared/TourCard";
 import tourEvents from "../../data/tourEventData";
 
-const SongInfoCard = ({ track }) => {
+const SongInfoCard = ({ track, onToggleNowPlaying }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
@@ -13,6 +13,10 @@ const SongInfoCard = ({ track }) => {
     setScrolled(scrollPosition > 0);
   };
 
+  const handleClose = () => {
+    onToggleNowPlaying(false);
+  };
+
   return (
     <div
       className={`w-full bg-zinc-900 p-4 rounded-lg overflow-y-auto flex-1 flex-col h-full ${
@@ -20,10 +24,10 @@ const SongInfoCard = ({ track }) => {
       }`}
     >
       <div className="flex items-center justify-between py-3 mb-2">
-        <span className="text-white text-sm font-bold cursor-default">
+        <span className="text-white text-md font-bold cursor-default">
           Dwip
         </span>
-        <button className="text-zinc-400 hover:text-white hover:scale-105">
+        <button onClick={handleClose} className="text-zinc-400 hover:text-white hover:scale-105">
           <Plus size={22} style={{ transform: "rotate(45deg)" }} />
         </button>
       </div>
@@ -118,7 +122,7 @@ const SongInfoCard = ({ track }) => {
               <span className="text-white text-md font-bold">
                 {credit.name}
               </span>
-              <span className="text-gray-400 font-bold text-sm">
+              <span className="text-gray-400 font-medium text-sm">
                 {credit.role}
               </span>
             </div>

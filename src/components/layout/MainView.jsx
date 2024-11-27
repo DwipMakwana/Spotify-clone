@@ -25,7 +25,7 @@ const MainView = ({ onTrackSelect }) => {
       const columnWidth = 180; // Approximate width of each grid item
       const availableColumns = Math.floor(containerWidth / columnWidth);
 
-      setGridColumns(Math.max(4, Math.min(availableColumns, 7))); // Limit between 4-7 columns
+      setGridColumns(Math.max(2, availableColumns)); // Limit between 4-7 columns
     };
 
     // Calculate on mount and resize
@@ -41,34 +41,35 @@ const MainView = ({ onTrackSelect }) => {
       className={`rounded-xl flex-1 flex flex-col h-full relative ${
         scrolled
           ? "bg-zinc-900"
-          : "bg-gradient-to-b from-blue-950 to-zinc-900 bg-[length:100%_50%] bg-no-repeat"
+          : "bg-gradient-to-b from-red-950 to-zinc-900 bg-[length:100%_50%] bg-no-repeat"
       }`}
     >
       {/* Fixed Header */}
       <div
         className={`rounded-t-xl sticky top-0 z-10 px-4 py-4 flex justify-between items-center transition-colors duration-300
           ${scrolled
-            ? "bg-blue-950 transition-opacity duration-300"
+            ? "bg-red-950 transition-opacity duration-300"
             : ""
           }`
         }
       >
         <div className="w-16 flex items-center">
           <div className="flex justify-start space-x-2">
-            <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105">
-              <ChevronLeft size={18} />
+            <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105 cursor-pointer">
+              <ChevronLeft size={18} className="hover:text-white text-zinc-400 hover:scale-105" />
             </div>
-            <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105">
-              <ChevronRight size={18} />
+            <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105 cursor-pointer">
+              <ChevronRight size={18} className="hover:text-white text-zinc-400 hover:scale-105" />
             </div>
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105">
-            <Bell size={18} />
+          <div className="relative flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105 cursor-pointer">
+            <Bell size={18} className="hover:text-white text-zinc-400 hover:scale-105"/>
+            <div className="w-2 h-2 rounded-full bg-blue-500 absolute flex top-1 right-1"/>
           </div>
-          <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105">
-            <Users size={18} />
+          <div className="flex justify-center items-center p-2 bg-zinc-900 rounded-full w-8 h-8 hover:scale-105 cursor-pointer">
+            <Users size={18} className="hover:text-white text-zinc-400 hover:scale-105"/>
           </div>
           <button className="flex p-1 rounded-full bg-zinc-900 hover:scale-105 w-8 h-8">
             <img src={profileImage} alt="Profile Image" className="w-full" />

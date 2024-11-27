@@ -55,20 +55,6 @@ const toprecom = [
       isTopMix: true,
       image_url: 'https://picsum.photos/id/90/400'
     },
-    {
-      id: 9,
-      title: 'Martin Garixx',
-      artists: 'Robin Thicke',
-      isTopMix: true,
-      image_url: 'https://picsum.photos/id/100/400'
-    },
-    {
-      id: 10,
-      title: 'Major Lazor',
-      artists: 'Benny Blanco, Halsey, Khalid',
-      isTopMix: true,
-      image_url: 'https://picsum.photos/id/110/400'
-    }
   ];
 
 export default toprecom;

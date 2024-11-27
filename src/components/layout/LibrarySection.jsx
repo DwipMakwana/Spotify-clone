@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Library, Plus, ArrowRight } from "lucide-react";
 import PlaylistItem from "../shared/PlaylistItem";
-import ArtistItem from "../shared/ArtistItem";
+import library from "../../data/library";
 
 const LibrarySection = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -32,92 +32,20 @@ const LibrarySection = () => {
         </div> */}
       </div>
       {/* Scrollable content area */}
-      <div 
-        className="flex-1 overflow-y-auto px-2 custom-scrollbar relative" 
+      <div
+        className="flex-1 overflow-y-auto px-2 custom-scrollbar relative"
         onScroll={handleScroll}
       >
         <div className="mb-2">
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/230/200"}
-            name="Dwip"
-            type="Playlist • Dwip Makwana"
-            active={true}
-          />
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/240/200"}
-            name="Liked Songs"
-            type="Playlist • 215 songs"
-          />
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/250/200"}
-            name="Daily Mix"
-            type="Playlist • Spotify"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/260/200"}
-            name="Sunidhi Chauhan"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/270/200"}
-            name="DJ Snake"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/280/200"}
-            name="Drake"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/290/200"}
-            name="Shaan"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/310/200"}
-            name="Benny Dayal"
-            type="Artist"
-          />
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/320/200"}
-            name="90s Swagger"
-            type="Playlist • Spotify"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/330/200"}
-            name="Udit Narayan"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/340/200"}
-            name="Anu Malik"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/350/200"}
-            name="Salim Merchant"
-            type="Artist"
-          />
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/360/200"}
-            name="80s Love Hits"
-            type="Playlist • Spotify"
-          />
-          <PlaylistItem
-            image_url={"https://picsum.photos/id/370/200"}
-            name="Gaming Music"
-            type="Playlist • dlfjh492fh4292feinf8"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/340/200"}
-            name="Adnan Sami"
-            type="Artist"
-          />
-          <ArtistItem
-            image_url={"https://picsum.photos/id/350/200"}
-            name="Jason Durelo"
-            type="Artist"
-          />
+          {library.map((playlistItem) => (
+            <PlaylistItem
+              key={playlistItem.id}
+              image_url={playlistItem.image_url}
+              name={playlistItem.label}
+              type={playlistItem.type}
+              active={playlistItem.active}
+            />
+          ))}
         </div>
       </div>
     </div>

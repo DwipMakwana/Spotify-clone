@@ -6,13 +6,14 @@ import MainView from "./layout/MainView";
 import NowPlaying from "./layout/NowPlaying";
 import LibrarySection from "./layout/LibrarySection";
 import SongInfoCard from "./layout/SongInfoCard";
-import { Ellipsis } from 'lucide-react';
+import { Ellipsis } from "lucide-react";
 
 const SpotifyClone = () => {
   // Global state for the player
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [volume, setVolume] = useState(1);
+  const [isNowPlayingVisible, setIsNowPlayingVisible] = useState(true);
 
   // Player control functions
   const handlePlayPause = () => {
@@ -26,6 +27,11 @@ const SpotifyClone = () => {
   const handleTrackChange = (track) => {
     setCurrentTrack(track);
     setIsPlaying(true);
+  };
+
+  const handleToggleNowPlaying = (isVisible) => {
+    console.log(isVisible);
+    setIsNowPlayingVisible(isVisible);
   };
 
   return (
@@ -45,17 +51,23 @@ const SpotifyClone = () => {
         <div className="bg-zinc-900 rounded-xl flex-1">
           <MainView onTrackSelect={handleTrackChange} tracks={tracks} />
         </div>
-        <div className="w-[400px] bg-zinc-900 rounded-xl">
-          <SongInfoCard track={currentTrack} />
-        </div>
+        {isNowPlayingVisible && (
+          <div className="w-[400px] bg-zinc-900 rounded-xl">
+            <SongInfoCard
+              track={currentTrack}
+              onToggleNowPlaying={handleToggleNowPlaying}
+            />
+          </div>
+        )}
       </div>
-      <div className="h-24 bg-black rounded-xl">
+      <div className="h-22 bg-black rounded-xl">
         <NowPlaying
           track={currentTrack}
           isPlaying={isPlaying}
           volume={volume}
           onPlayPause={handlePlayPause}
           onVolumeChange={handleVolumeChange}
+          onToggleNowPlaying={handleToggleNowPlaying}
         />
       </div>
     </div>

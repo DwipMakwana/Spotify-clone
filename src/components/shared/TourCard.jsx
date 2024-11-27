@@ -12,7 +12,7 @@ const TourCard = ({ month, date, city, artist, details, location }) => {
         <div className="justify-start flex-1 ml-4">
           <p className="text-white font-medium text-md">{city}</p>
           <p className="text-white font-medium text-sm">{artist}</p>
-          <p className="text-zinc-400 font-bold text-sm line-clamp-1">{details} • {location}</p>
+          <p className="text-zinc-400 font-medium text-sm line-clamp-1">{details} • {location}</p>
         </div>
       </div>
     </div>

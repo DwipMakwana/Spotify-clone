@@ -35,6 +35,10 @@ html, body, #root {
   background-color: #03a9f4 !important;
 }
 
+.polygon-accent-color{
+  background-color: #03a9f4 !important;
+}
+
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -51,6 +55,10 @@ html, body, #root {
 }
 
 /* Scrollbar design */
+.overflow-y-auto {
+  scrollbar-gutter: stable;
+}
+
 ::-webkit-scrollbar {
   width: 20px;
   height: 8px;

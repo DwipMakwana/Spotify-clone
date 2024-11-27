@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Shuffle,
+  Repeat,
+} from "lucide-react";
 
 const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
-  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
 };
 
-const PlayerControls = ({ 
-  isPlaying, 
-  onPlayPause, 
-  totalDuration = 225 // Default 3:45 (225 seconds)
+const PlayerControls = ({
+  isPlaying,
+  onPlayPause,
+  totalDuration = 225, // Default 3:45 (225 seconds)
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [progress, setProgress] = useState(0.33); // Example progress (1/3 of the way)
@@ -33,32 +40,40 @@ const PlayerControls = ({
         <button className="text-zinc-400 hover:text-white hover:scale-105">
           <Shuffle size={20} />
         </button>
-        <button className="text-zinc-400 hover:text-white hover:scale-105"
-        onMouseEnter={() => setIsSkipBackHovering(true)}
-        onMouseLeave={() => setIsSkipBackHovering(false)}>
-          <SkipBack size={20} fill={isSkipBackHovering ? 'white' : '#a1a1aa'}/>
+        <button
+          className="text-zinc-400 hover:text-white hover:scale-105"
+          onMouseEnter={() => setIsSkipBackHovering(true)}
+          onMouseLeave={() => setIsSkipBackHovering(false)}
+        >
+          <SkipBack size={20} fill={isSkipBackHovering ? "white" : "#a1a1aa"} />
         </button>
-        <button 
+        <button
           className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
           onClick={onPlayPause}
         >
           {isPlaying ? (
-            <Pause size={20} className="text-black" fill='black' />
+            <Pause size={20} className="text-black" fill="black" />
           ) : (
-            <Play size={20} className="text-black" fill='black'/>
+            <Play size={20} className="text-black" fill="black" />
           )}
         </button>
-        <button className="text-zinc-400 hover:text-white hover:scale-105"
-        onMouseEnter={() => setIsSkipBackHovering(true)}
-        onMouseLeave={() => setIsSkipBackHovering(false)}>
-          <SkipForward size={20} fill={isSkipForwardHovering ? 'white' : '#a1a1aa'}/>
+        <button
+          className="text-zinc-400 hover:text-white hover:scale-105"
+          onMouseEnter={() => setIsSkipBackHovering(true)}
+          onMouseLeave={() => setIsSkipBackHovering(false)}
+        >
+          <SkipForward
+            size={20}
+            fill={isSkipForwardHovering ? "white" : "#a1a1aa"}
+          />
         </button>
         <button className="text-zinc-400 hover:text-white hover:scale-105">
           <Repeat size={20} />
         </button>
       </div>
-      <div 
-        className="w-9/12 flex items-center space-x-2 mt-2 relative"
+      <div
+        className="flex items-center space-x-2 mt-2 relative"
+        style={{ width: "60%" }}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
@@ -68,17 +83,17 @@ const PlayerControls = ({
         <div className="flex-1 h-1 bg-zinc-800 rounded-full relative">
           <div
             className={`h-full rounded-full transition-colors duration-300 ${
-              isHovering ? 'bg-accent-color' : 'bg-white'
+              isHovering ? "bg-accent-color" : "bg-white"
             }`}
             style={{ width: `${progress * 100}%` }}
           />
           {isHovering && (
-            <div 
+            <div
               className="absolute top-1/2 -translate-y-1/2 bg-white w-3 h-3 rounded-full shadow-lg z-10 pointer-events-none"
-              style={{ 
-                left: `${progress * 100}%`, 
-                transform: 'translate(-50%, -50%)',
-                marginLeft: '-1px' // Fine-tune positioning
+              style={{
+                left: `${progress * 100}%`,
+                transform: "translate(-50%, -50%)",
+                marginLeft: "-1px", // Fine-tune positioning
               }}
             />
           )}
