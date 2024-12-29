@@ -25,7 +25,7 @@ const MainView = ({ onTrackSelect }) => {
       const columnWidth = 180; // Approximate width of each grid item
       const availableColumns = Math.floor(containerWidth / columnWidth);
 
-      setGridColumns(Math.max(2, availableColumns)); // Limit between 4-7 columns
+      setGridColumns(Math.max(2, availableColumns)); // Limit columns
     };
 
     // Calculate on mount and resize
